@@ -1,4 +1,4 @@
-# Claude Team Kit
+# Ekip Kit
 
 A Claude Code plugin that makes Claude dependable when a whole software
 team uses it on the same codebase. It addresses five recurring problems:
@@ -58,8 +58,8 @@ author's assumptions. Flow and risk table: [`docs/WORKFLOW.md`](docs/WORKFLOW.md
 
 Hooks fail open on their own internal errors, so a hook bug never blocks
 work. If a hook gets in your way, start Claude Code with
-`CLAUDE_TEAM_KIT_DISABLE=1` (all hooks) or e.g.
-`CLAUDE_TEAM_KIT_DISABLE=guard,stop-gate` (only those) — and report the
+`EKIP_KIT_DISABLE=1` (all hooks) or e.g.
+`EKIP_KIT_DISABLE=guard,stop-gate` (only those) — and report the
 false positive so the rule can be fixed.
 
 ## CI template
@@ -85,13 +85,13 @@ Details and rationale: [`docs/DESIGN.md`](docs/DESIGN.md).
 
 ```
 claude plugin marketplace add <this-repo-url-or-local-path>
-claude plugin install claude-team-kit
+claude plugin install ekip-kit
 ```
 
 Try it locally without installing:
 
 ```
-claude --plugin-dir ./claude-team-kit
+claude --plugin-dir ./ekip-kit
 ```
 
 Then, in a project:

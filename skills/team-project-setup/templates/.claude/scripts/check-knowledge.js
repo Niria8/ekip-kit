@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-// Checks the team knowledge tree (claude-team-kit). Run locally or in CI:
+// Checks the team knowledge tree (ekip-kit). Run locally or in CI:
 //   node .claude/scripts/check-knowledge.js [--dir docs/knowledge] [--base <git ref>]
 // Errors (exit 1):
 //   - entry file without the required frontmatter fields / invalid status

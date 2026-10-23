@@ -4,7 +4,7 @@ argument-hint: "<what to build or fix, ideally with a ticket id>"
 allowed-tools: Read, Grep, Glob, Bash(git:*), Agent
 ---
 
-Run the `claude-team-kit:planner` agent on this request: $ARGUMENTS
+Run the `ekip-kit:planner` agent on this request: $ARGUMENTS
 
 Pass it everything relevant from this conversation (ticket text, user
 constraints, earlier decisions). Do not edit any code in this command.
@@ -15,4 +15,4 @@ When it returns:
 - Ask the user to approve the plan (or answer the questions) before any
   task is implemented.
 - After approval, implementation goes one task at a time through
-  `claude-team-kit:implementer`, followed by `/verify`.
+  `ekip-kit:implementer`, followed by `/verify`.

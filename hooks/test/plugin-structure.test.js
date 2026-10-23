@@ -96,8 +96,8 @@ test('every referenced agent, skill, and command exists', () => {
   for (const file of allMarkdown(ROOT)) {
     const text = fs.readFileSync(file, 'utf8');
     const rel = path.relative(ROOT, file);
-    for (const m of text.matchAll(/claude-team-kit:([a-z-]+)/g)) {
-      if (!known.has(m[1])) problems.push(`${rel}: claude-team-kit:${m[1]}`);
+    for (const m of text.matchAll(/ekip-kit:([a-z-]+)/g)) {
+      if (!known.has(m[1])) problems.push(`${rel}: ekip-kit:${m[1]}`);
     }
     for (const m of text.matchAll(/`([a-z]+(?:-[a-z]+)+)` (skill|agent)\b/g)) {
       if (!known.has(m[1])) problems.push(`${rel}: \`${m[1]}\` ${m[2]}`);
@@ -112,7 +112,7 @@ test('every referenced agent, skill, and command exists', () => {
 test('version is the same in all manifests and has a changelog entry', () => {
   const read = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, f), 'utf8'));
   const plugin = read('.claude-plugin/plugin.json').version;
-  const market = read('.claude-plugin/marketplace.json').plugins.find((p) => p.name === 'claude-team-kit').version;
+  const market = read('.claude-plugin/marketplace.json').plugins.find((p) => p.name === 'ekip-kit').version;
   const pkg = read('package.json').version;
   assert.equal(market, plugin, 'marketplace.json version differs from plugin.json');
   assert.equal(pkg, plugin, 'package.json version differs from plugin.json');
@@ -133,5 +133,5 @@ test('template settings enable this plugin from this marketplace', () => {
   const settings = JSON.parse(fs.readFileSync(path.join(ROOT, 'skills/team-project-setup/templates/.claude/settings.json'), 'utf8'));
   const market = JSON.parse(fs.readFileSync(path.join(ROOT, '.claude-plugin/marketplace.json'), 'utf8')).name;
   assert.ok(settings.extraKnownMarketplaces[market], `template must register marketplace "${market}"`);
-  assert.equal(settings.enabledPlugins[`claude-team-kit@${market}`], true);
+  assert.equal(settings.enabledPlugins[`ekip-kit@${market}`], true);
 });

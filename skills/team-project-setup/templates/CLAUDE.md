@@ -13,7 +13,7 @@
 - Lint / type-check: `<command>`
 
 ## Team workflow
-This project uses the `claude-team-kit` plugin. Before touching an area,
+This project uses the `ekip-kit` plugin. Before touching an area,
 read the knowledge entries in `docs/knowledge/INDEX.md` whose `applies-to`
 matches the files you will change.
 

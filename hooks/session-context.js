@@ -42,7 +42,7 @@ function build(input) {
   const kd = path.join(dir, config.knowledgeDir);
   if (!fromFile && !fs.existsSync(kd)) return null;
 
-  const parts = ['## Team guardrails (claude-team-kit)'];
+  const parts = ['## Team guardrails (ekip-kit)'];
   if (input.source === 'compact') {
     parts.push('Context was just compacted. Before continuing: re-read the active work-log for the current task, re-check "Do not touch" and invariants below, and re-run the baseline tests before further edits. Do not rely on memory of earlier decisions — read them.');
   }

@@ -11,7 +11,7 @@ and `package.json` together (a test checks they match).
 
 ### Added
 - `LICENSE` (MIT).
-- Kill switch: `CLAUDE_TEAM_KIT_DISABLE=1` turns all hooks off; a comma list
+- Kill switch: `EKIP_KIT_DISABLE=1` turns all hooks off; a comma list
   (`guard`, `session-context`, `stop-gate`) turns off only those.
 - Project template `.claude/settings.json` registers the kit's marketplace and
   enables the plugin, so teammates who open the project are offered the kit.

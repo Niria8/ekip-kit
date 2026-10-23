@@ -70,7 +70,7 @@ something back: "Restore DONT-007 from the archive."
 ## 5. When a hook is wrong
 
 If a guard rule blocks something legitimate: for a one-off, start Claude
-Code with `CLAUDE_TEAM_KIT_DISABLE=guard` (or `=1` for all hooks). For a
+Code with `EKIP_KIT_DISABLE=guard` (or `=1` for all hooks). For a
 rule that is noisy in this project, add it to `codeScan.ignoreRules` /
 `secretScan.allowPatterns` in `.claude/guardrails.json` through a PR.
 Either way, report it — false positives erode trust in every rule.

@@ -2,7 +2,7 @@
 
 How work flows through the kit's roles, and how much of the chain a change
 needs. The roles are subagents shipped with the plugin (invoked as
-`claude-team-kit:<name>`), so every step runs with a fresh context instead
+`ekip-kit:<name>`), so every step runs with a fresh context instead
 of inheriting the author's assumptions.
 
 ## Core rule

@@ -4,7 +4,7 @@ argument-hint: "[optional: area or path to focus on, or 'personal' for your auto
 allowed-tools: Read, Grep, Glob, Bash(node .claude/scripts/check-knowledge.js:*), Bash(git status:*), Agent
 ---
 
-Run the `claude-team-kit:knowledge-curator` agent. Focus: $ARGUMENTS
+Run the `ekip-kit:knowledge-curator` agent. Focus: $ARGUMENTS
 (empty = the whole knowledge tree; `personal` = the user's auto-memory
 directory for this project, using an `archive/` subfolder there).
 

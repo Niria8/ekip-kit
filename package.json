@@ -1,8 +1,8 @@
 {
-  "name": "claude-team-kit",
+  "name": "ekip-kit",
   "version": "0.1.0",
   "private": true,
-  "description": "Development scripts for the claude-team-kit Claude Code plugin. The plugin itself has no runtime dependencies.",
+  "description": "Development scripts for the ekip-kit Claude Code plugin. The plugin itself has no runtime dependencies.",
   "license": "MIT",
   "scripts": {
     "test": "node --test"

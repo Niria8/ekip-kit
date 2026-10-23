@@ -5,7 +5,7 @@ allowed-tools: Bash(git diff:*), Bash(git status:*), Bash(git log:*), Bash(git m
 ---
 
 Verify the current change independently, following `docs/WORKFLOW.md`
-(or the summary in the `claude-team-kit:planner` agent). Base: $ARGUMENTS
+(or the summary in the `ekip-kit:planner` agent). Base: $ARGUMENTS
 (if empty, use `main`, else `master`, else the working tree only).
 
 1. **Collect the change.** `git status`, `git diff <base>...HEAD`, and
@@ -18,12 +18,12 @@ Verify the current change independently, following `docs/WORKFLOW.md`
    or if any guard-hook security ask was confirmed in this session.
 3. **Run the roles in order, each as a separate subagent** (they must not
    share the implementer's context):
-   - `claude-team-kit:regression-verifier` — give it the criteria, the
+   - `ekip-kit:regression-verifier` — give it the criteria, the
      base ref, and the changed files. If its verdict is "back to
      implementer", stop here and report.
-   - `claude-team-kit:code-reviewer` — give it the same, plus the
+   - `ekip-kit:code-reviewer` — give it the same, plus the
      verifier's report.
-   - `claude-team-kit:security-gatekeeper` — only if security-relevant.
+   - `ekip-kit:security-gatekeeper` — only if security-relevant.
    Do not fix anything yourself during this command.
 4. **Summarize**:
 

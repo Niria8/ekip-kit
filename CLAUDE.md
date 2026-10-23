@@ -1,4 +1,4 @@
-# claude-team-kit
+# ekip-kit
 
 A standalone Claude Code plugin that makes Claude dependable for software
 teams: shared project memory in the repo (archived, never deleted), a
@@ -46,7 +46,7 @@ There is no build step and no dependency to install — keep it that way.
   `.claude-plugin/marketplace.json`, `package.json`; bump them together
   and add the matching CHANGELOG section (a test enforces both).
 - Every hook entry point goes through `lib.run('<hook-name>', ...)` so the
-  `CLAUDE_TEAM_KIT_DISABLE` kill switch keeps working.
+  `EKIP_KIT_DISABLE` kill switch keeps working.
 - MIT licensed; do not copy code from projects with incompatible licenses,
   and credit MIT sources you copy from.
 - Repository content is English. Paths in docs use forward slashes.
@@ -57,7 +57,7 @@ There is no build step and no dependency to install — keep it that way.
 - v0.1.0 released; changes since are under Unreleased in `CHANGELOG.md`.
   CI green on Linux/Windows/macOS (Node 24).
 - NOT yet verified in a live Claude Code session: plugin loading,
-  agent/command invocation (`claude-team-kit:<agent>` naming), hook
+  agent/command invocation (`ekip-kit:<agent>` naming), hook
   `ask` behavior under auto/bypass permission modes, `paths:`-scoped rules,
   marketplace auto-offer from the template `settings.json`.
 - The project CI template (gitleaks v8.18.4, osv-scanner v1.9.1) has not

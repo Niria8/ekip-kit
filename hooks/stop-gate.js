@@ -69,7 +69,7 @@ function evaluate(input, files) {
     fs.writeFileSync(marker, '');
   } catch (e) { /* best effort */ }
 
-  return '[claude-team-kit test gate] ' + reasons.join(' ');
+  return '[ekip-kit test gate] ' + reasons.join(' ');
 }
 
 if (require.main === module) {

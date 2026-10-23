@@ -313,7 +313,7 @@ if (require.main === module) {
       hookSpecificOutput: {
         hookEventName: 'PreToolUse',
         permissionDecision: result.decision,
-        permissionDecisionReason: '[claude-team-kit] ' + result.reasons.join(' | '),
+        permissionDecisionReason: '[ekip-kit] ' + result.reasons.join(' | '),
       },
     });
   });

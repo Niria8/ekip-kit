@@ -1,14 +1,14 @@
 {
   "extraKnownMarketplaces": {
-    "claude-team-kit-marketplace": {
+    "ekip-kit-marketplace": {
       "source": {
         "source": "github",
-        "repo": "Beshlee/claude-team-kit"
+        "repo": "ORG/ekip-kit"
       }
     }
   },
   "enabledPlugins": {
-    "claude-team-kit@claude-team-kit-marketplace": true
+    "ekip-kit@ekip-kit-marketplace": true
   },
   "permissions": {
     "deny": [

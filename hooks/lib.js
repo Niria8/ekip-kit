@@ -1,5 +1,5 @@
 'use strict';
-// Shared helpers for the claude-team-kit hooks.
+// Shared helpers for the ekip-kit hooks.
 // Hooks must never break a session because of their own bugs: every entry
 // point catches its errors and exits 0 (fail-open), logging to stderr.
 
@@ -41,7 +41,7 @@ function loadConfig(dir) {
   try {
     if (fs.existsSync(file)) user = JSON.parse(fs.readFileSync(file, 'utf8'));
   } catch (e) {
-    process.stderr.write(`[claude-team-kit] invalid ${file}: ${e.message}\n`);
+    process.stderr.write(`[ekip-kit] invalid ${file}: ${e.message}\n`);
   }
   const config = Object.assign({}, DEFAULTS, user || {});
   for (const k of ['testGate', 'secretScan', 'codeScan', 'sessionContext']) {
@@ -103,10 +103,10 @@ function emit(obj) {
 }
 
 // Kill switch, for when a hook gets in someone's way and they need to keep
-// working: CLAUDE_TEAM_KIT_DISABLE=1 (or true/all) turns every hook off;
+// working: EKIP_KIT_DISABLE=1 (or true/all) turns every hook off;
 // a comma list such as "guard,stop-gate" turns off only those.
 function isDisabled(name, env = process.env) {
-  const v = String(env.CLAUDE_TEAM_KIT_DISABLE || '').trim().toLowerCase();
+  const v = String(env.EKIP_KIT_DISABLE || '').trim().toLowerCase();
   if (!v || v === '0' || v === 'false') return false;
   if (v === '1' || v === 'true' || v === 'all') return true;
   return v.split(/[\s,]+/).includes(String(name).toLowerCase());
@@ -117,7 +117,7 @@ function run(name, main) {
   try {
     main(readStdin());
   } catch (e) {
-    process.stderr.write(`[claude-team-kit] hook error (ignored): ${e && e.stack}\n`);
+    process.stderr.write(`[ekip-kit] hook error (ignored): ${e && e.stack}\n`);
   }
   process.exit(0);
 }
