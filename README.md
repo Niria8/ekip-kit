@@ -8,7 +8,7 @@
 > üzerine [superpowers](https://github.com/obra/superpowers)'tan
 > karşılaştırma testini kazanan skill'ler ve CI'a semgrep eklendi. Hangi
 > parçanın neden seçildiği ve test sonuçları:
-> [`docs/KARSILASTIRMA.md`](docs/KARSILASTIRMA.md). Kaynaklar ve lisanslar:
+> [`docs/KARSILASTIRMA.md`](docs/KARSILASTIRMA.md). Kurulum: [`docs/KURULUM.md`](docs/KURULUM.md). Kaynaklar ve lisanslar:
 > [`NOTICE.md`](NOTICE.md).
 
 A Claude Code plugin that makes Claude dependable when a whole software

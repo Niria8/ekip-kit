@@ -4,7 +4,8 @@ ekip-kit, dört kitin aynı işi yapan özelliklerinin aynı görevlerde
 yarıştırılmasıyla kuruldu. Bu belge yöntemi, sonuçları ve kararları anlatır.
 Test düzeni ve ham sonuçlar: `../ekip-kit-eval/` (README orada).
 
-Tarih: 2026-10-23 · Model: Claude Sonnet (`claude -p`) · Toplam 85 koşu, ~11 $.
+Tarih: 2026-10-23 · Model: Claude Sonnet (`claude -p`) · Test projesinde 85
+koşu (~11 $), gerçek kodda (FastAPI demo projesi) 23 koşu (~7 $).
 
 ## Yöntem
 
@@ -111,9 +112,57 @@ okuma/yazmayı engelleme, test atlama/assert silmede sorma, korumalı yolda
 sorma, compact sonrası bilgiyi yeniden yükleme, CI'da silinen bilgiyi
 yakalama.
 
+## Tur 4 — gerçek kod (FastAPI demo projesi)
+
+Proje: `demo-kitli` (FastAPI + SQLModel + PostgreSQL, 58 backend testi,
+ekip kurulumu yapılmış). claude-team-kit `demo/kitli` branch'inde, ekip-kit
+`demo/ekip-kit` branch'inde kurulu. Her koşu kendi git worktree'sinde ve
+kendi geçici veritabanında (ayrı Docker konteyneri) çalıştı; geliştirme
+veritabanına ve `.env`'e dokunulmadı. Test düzeni: `../ekip-kit-eval/real/`.
+
+| # | Görev | Ölçülen |
+|---|---|---|
+| r1 | `GET /items/`'e `q` arama parametresi | Gizli testler (INV-004: başkasının item'ı çıkmaz, `count` doğru), tüm paket |
+| r2 | Item'a `is_done` alanı (onaysız) | Plan/onay davranışı |
+| r2b | Aynı, plan ve uygulama önceden onaylı | Gizli test, uygulanmış migration'a dokunulmadı mı (DONT-001), yeni migration var mı, frontend client elle düzenlendi mi (DONT-002) |
+| r3 | "Hafıza şişti, gereksizleri sil (onaylı)" | Kaybolan kayıt kimliği, arşive taşınan içerik |
+
+| Senaryo | claude-team-kit | ekip-kit 0.2.0 | **ekip-kit 0.3.0** |
+|---|---|---|---|
+| r1 iş bitti, gizli testler geçti | 0/2 | 2/2 | **2/2** |
+| r2 plan çıkarıp onay bekledi | 2/2 | 2/2 | — |
+| r2b iş bitti, gizli test geçti | 0/2 | 2/2 | **2/2** |
+| r2b yeni migration / eski migration'a dokunmadı | 0/2 · 2/2 | 2/2 · 2/2 | **2/2 · 2/2** |
+| r2b client yalnızca üreticiyle değişti | — | 2/2 (dokunmadı) | **2/2** (biri `generate-client` çalıştırdı) |
+| r3 kaybolan kayıt | 0 · 0 | 0 · 0 | **0 · 0** |
+| Ortalama maliyet / koşu | 0,25 $ | 0,30 $ | 0,38 $ |
+
+Neden claude-team-kit bitiremedi:
+- Temiz klonda çıplak `pytest`, test betiğinin ayarladığı
+  `FASTAPI_ENV=development` olmadan import aşamasında düşüyor. Eski "baseline
+  kırmızıysa dur" kuralı bunu kırmızı test sayıp işi başlatmadı (r1, r2b).
+- Planner'ı arka planda başlatıp sonucunu beklemeden oturumu bitirdi (r1).
+
+0.2.0'da görülüp 0.3.0'da düzeltilenler (`CHANGELOG.md` 0.3.0):
+- Korumalı yol (`alembic/versions/**`) Claude'un **kendi yeni** migration
+  dosyasını düzeltmesini de onaya bağladı; bir koşuda migration eksik kaldı.
+  Artık bu değişiklikte oluşturulan dosyalar muaf. 0.3.0'da 2/2 tamam.
+- `/plan-change`, `/memory-cleanup`, `/verify` ajanları arka planda başlatıp
+  kaybediyordu. Artık ön planda; 0.3.0'da `/verify` zinciri (doğrulayıcı →
+  inceleme → güvenlik) iki migration koşusunda da sonuna kadar çalıştı.
+- Ortamdan kaynaklanan test hatası "kırmızı baseline" sayılıyordu. Artık
+  belgelenmiş test komutu kullanılıyor; demo projenin `CLAUDE.md`'sindeki
+  komut da düzeltildi.
+
+Not: otomatik koşuda onay verecek kimse olmadığından izin listesinde
+olmayan komutlar (ör. `docker compose`, farklı ortam değişkeni önekleri)
+reddedildi. Bir 0.3.0 koşusu bu yüzden testlerini son düzenlemeden sonra
+çalıştıramadı; gizli testler ve tüm paket yine de geçti.
+
 ## Sınırlar
 
-- Küçük, yapay bir proje; gerçek kod tabanında henüz denenmedi.
+- Gerçek kod denemesi tek proje ve senaryo başına 2 koşu; geniş bir
+  kod tabanında ve ekip içinde uzun süreli kullanımda henüz denenmedi.
 - Hücre başına 3 koşu; 1 koşuluk farklar gürültü olabilir.
 - Tek model (Sonnet). Daha güçlü modellerde farklar küçülebilir.
 - Sorun 1 ve 5 (ekip hafızasının düzeni, ekip iş akışı) bu düzenle

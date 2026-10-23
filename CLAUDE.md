@@ -49,7 +49,9 @@ There is no build step and no dependency to install — keep it that way.
   `EKIP_KIT_DISABLE` kill switch keeps working.
 - MIT licensed; do not copy code from projects with incompatible licenses,
   and credit MIT sources you copy from.
-- Repository content is English. Paths in docs use forward slashes.
+- Repository content is English, except the team-facing Turkish docs
+  (README summary, `docs/KARSILASTIRMA.md`, `docs/KURULUM.md`). Paths in
+  docs use forward slashes.
 - The kit's own principle applies here: knowledge in docs is archived or
   superseded, not silently deleted.
 
