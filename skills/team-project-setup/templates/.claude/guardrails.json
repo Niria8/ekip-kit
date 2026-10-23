@@ -1,5 +1,5 @@
 {
-  "$comment": "Read by the ekip-kit plugin hooks. Commit this file.",
+  "$comment": "Read by the takim plugin hooks. Commit this file.",
   "knowledgeDir": "docs/knowledge",
   "protectedPaths": [
     {

@@ -1,4 +1,4 @@
-# CI gate for projects set up with ekip-kit. Hooks catch mistakes on
+# CI gate for projects set up with takim. Hooks catch mistakes on
 # one developer's machine; this catches them for everyone, on every PR.
 # Fill in the two TODO steps in the "tests" job (team-project-setup does this).
 # Tool versions are pinned on purpose — bump them deliberately.

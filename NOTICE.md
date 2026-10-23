@@ -1,6 +1,6 @@
 # NOTICE — sources and local changes
 
-ekip-kit is built from the open-source kits below. Each keeps its own
+takim is built from the open-source kits below. Each keeps its own
 license; the full MIT text is in [`LICENSE`](LICENSE).
 
 ## claude-team-kit — base of this kit
@@ -11,7 +11,7 @@ license; the full MIT text is in [`LICENSE`](LICENSE).
 - Taken: everything (agents, commands, skills, hooks, templates, CI
   template, tests, docs).
 - Local changes:
-  - Renamed to `ekip-kit` (`ekip-kit:<agent>` names, `EKIP_KIT_DISABLE`).
+  - Renamed to `takim` (`takim:<agent>` names, `TAKIM_DISABLE`).
   - `safe-change`, `agents/implementer.md`, template
     `.claude/rules/change-safety.md`: pre-existing red test rule and
     root-cause rule (see `CHANGELOG.md` 0.2.0 and `docs/KARSILASTIRMA.md`).

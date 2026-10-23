@@ -221,8 +221,8 @@ test('session context injects DONTs, invariants, protected paths and active ledg
 test('session context injects only the core working rules in projects without the structure', () => {
   const dir = tmpProject(null);
   const text = sessionContext.build({ cwd: dir, source: 'startup' });
-  assert.match(text, /ekip-kit:safe-change/);
-  assert.match(text, /ekip-kit:systematic-debugging/);
+  assert.match(text, /takim:safe-change/);
+  assert.match(text, /takim:systematic-debugging/);
   assert.doesNotMatch(text, /Knowledge index/);
 });
 
@@ -296,20 +296,20 @@ test('memory-deletion guard matches path arguments, not substrings', () => {
   }
 });
 
-test('kill switch: EKIP_KIT_DISABLE turns all or named hooks off', () => {
+test('kill switch: TAKIM_DISABLE turns all or named hooks off', () => {
   assert.equal(lib.isDisabled('guard', {}), false);
-  assert.equal(lib.isDisabled('guard', { EKIP_KIT_DISABLE: '0' }), false);
-  for (const v of ['1', 'true', 'ALL']) assert.equal(lib.isDisabled('guard', { EKIP_KIT_DISABLE: v }), true, v);
-  assert.equal(lib.isDisabled('guard', { EKIP_KIT_DISABLE: 'guard, stop-gate' }), true);
-  assert.equal(lib.isDisabled('session-context', { EKIP_KIT_DISABLE: 'guard,stop-gate' }), false);
+  assert.equal(lib.isDisabled('guard', { TAKIM_DISABLE: '0' }), false);
+  for (const v of ['1', 'true', 'ALL']) assert.equal(lib.isDisabled('guard', { TAKIM_DISABLE: v }), true, v);
+  assert.equal(lib.isDisabled('guard', { TAKIM_DISABLE: 'guard, stop-gate' }), true);
+  assert.equal(lib.isDisabled('session-context', { TAKIM_DISABLE: 'guard,stop-gate' }), false);
 
   // end-to-end: a command that would be denied passes silently when disabled
   const dir = tmpProject(null);
   const input = JSON.stringify({ tool_name: 'Bash', tool_input: { command: 'rm docs/knowledge/INDEX.md' }, cwd: dir });
   const script = path.join(__dirname, '..', 'guard.js');
-  const off = spawnSync(process.execPath, [script], { input, encoding: 'utf8', env: { ...process.env, CLAUDE_PROJECT_DIR: dir, EKIP_KIT_DISABLE: 'guard' } });
+  const off = spawnSync(process.execPath, [script], { input, encoding: 'utf8', env: { ...process.env, CLAUDE_PROJECT_DIR: dir, TAKIM_DISABLE: 'guard' } });
   assert.equal(off.status, 0);
   assert.equal(off.stdout, '');
-  const on = spawnSync(process.execPath, [script], { input, encoding: 'utf8', env: { ...process.env, CLAUDE_PROJECT_DIR: dir, EKIP_KIT_DISABLE: 'stop-gate' } });
+  const on = spawnSync(process.execPath, [script], { input, encoding: 'utf8', env: { ...process.env, CLAUDE_PROJECT_DIR: dir, TAKIM_DISABLE: 'stop-gate' } });
   assert.match(on.stdout, /"permissionDecision":"deny"/);
 });

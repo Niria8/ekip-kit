@@ -4,7 +4,7 @@ argument-hint: "<what to build or fix, ideally with a ticket id>"
 allowed-tools: Read, Grep, Glob, Bash(git:*), Agent
 ---
 
-Run the `ekip-kit:planner` agent on this request: $ARGUMENTS
+Run the `takim:planner` agent on this request: $ARGUMENTS
 
 Run it in the foreground and wait for its plan before you reply — never
 as a background task: everything below depends on its result, and a
@@ -18,4 +18,4 @@ When it returns:
 - Ask the user to approve the plan (or answer the questions) before any
   task is implemented.
 - After approval, implementation goes one task at a time through
-  `ekip-kit:implementer`, followed by `/verify`.
+  `takim:implementer`, followed by `/verify`.

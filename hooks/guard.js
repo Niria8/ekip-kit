@@ -327,7 +327,7 @@ if (require.main === module) {
       hookSpecificOutput: {
         hookEventName: 'PreToolUse',
         permissionDecision: result.decision,
-        permissionDecisionReason: '[ekip-kit] ' + result.reasons.join(' | '),
+        permissionDecisionReason: '[takim] ' + result.reasons.join(' | '),
       },
     });
   });

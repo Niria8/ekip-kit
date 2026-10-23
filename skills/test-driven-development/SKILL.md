@@ -3,7 +3,7 @@ name: test-driven-development
 description: Use when implementing any feature or bugfix, before writing implementation code
 ---
 
-> Source: [obra/superpowers](https://github.com/obra/superpowers) `skills/test-driven-development` (MIT, Jesse Vincent). Vendored into ekip-kit; see NOTICE.md for local changes.
+> Source: [obra/superpowers](https://github.com/obra/superpowers) `skills/test-driven-development` (MIT, Jesse Vincent). Vendored into takim; see NOTICE.md for local changes.
 
 # Test-Driven Development (TDD)
 

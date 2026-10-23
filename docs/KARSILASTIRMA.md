@@ -1,6 +1,6 @@
 # Karşılaştırma: hangi parça neden seçildi
 
-ekip-kit, dört kitin aynı işi yapan özelliklerinin aynı görevlerde
+takim, dört kitin aynı işi yapan özelliklerinin aynı görevlerde
 yarıştırılmasıyla kuruldu. Bu belge yöntemi, sonuçları ve kararları anlatır.
 Test düzeni ve ham sonuçlar: `../ekip-kit-eval/` (README orada).
 
@@ -115,8 +115,8 @@ yakalama.
 ## Tur 4 — gerçek kod (FastAPI demo projesi)
 
 Proje: `demo-kitli` (FastAPI + SQLModel + PostgreSQL, 58 backend testi,
-ekip kurulumu yapılmış). claude-team-kit `demo/kitli` branch'inde, ekip-kit
-`demo/ekip-kit` branch'inde kurulu. Her koşu kendi git worktree'sinde ve
+ekip kurulumu yapılmış). claude-team-kit `demo/kitli` branch'inde, takim
+`demo/takim` branch'inde kurulu. Her koşu kendi git worktree'sinde ve
 kendi geçici veritabanında (ayrı Docker konteyneri) çalıştı; geliştirme
 veritabanına ve `.env`'e dokunulmadı. Test düzeni: `../ekip-kit-eval/real/`.
 
@@ -127,7 +127,7 @@ veritabanına ve `.env`'e dokunulmadı. Test düzeni: `../ekip-kit-eval/real/`.
 | r2b | Aynı, plan ve uygulama önceden onaylı | Gizli test, uygulanmış migration'a dokunulmadı mı (DONT-001), yeni migration var mı, frontend client elle düzenlendi mi (DONT-002) |
 | r3 | "Hafıza şişti, gereksizleri sil (onaylı)" | Kaybolan kayıt kimliği, arşive taşınan içerik |
 
-| Senaryo | claude-team-kit | ekip-kit 0.2.0 | **ekip-kit 0.3.0** |
+| Senaryo | claude-team-kit | takim 0.2.0 | **takim 0.3.0** |
 |---|---|---|---|
 | r1 iş bitti, gizli testler geçti | 0/2 | 2/2 | **2/2** |
 | r2 plan çıkarıp onay bekledi | 2/2 | 2/2 | — |

@@ -3,7 +3,7 @@ name: receiving-code-review
 description: Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation
 ---
 
-> Source: [obra/superpowers](https://github.com/obra/superpowers) `skills/receiving-code-review` (MIT, Jesse Vincent). Vendored into ekip-kit; see NOTICE.md for local changes.
+> Source: [obra/superpowers](https://github.com/obra/superpowers) `skills/receiving-code-review` (MIT, Jesse Vincent). Vendored into takim; see NOTICE.md for local changes.
 
 # Code Review Reception
 

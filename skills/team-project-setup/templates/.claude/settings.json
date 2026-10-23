@@ -1,14 +1,14 @@
 {
   "extraKnownMarketplaces": {
-    "ekip-kit-marketplace": {
+    "takim-marketplace": {
       "source": {
         "source": "github",
-        "repo": "ORG/ekip-kit"
+        "repo": "ORG/takim"
       }
     }
   },
   "enabledPlugins": {
-    "ekip-kit@ekip-kit-marketplace": true
+    "takim@takim-marketplace": true
   },
   "permissions": {
     "deny": [

@@ -8,14 +8,14 @@
 // docs/KARSILASTIRMA.md), so the session is told which skill fits which task.
 
 const CORE = [
-  '## Working rules (ekip-kit)',
+  '## Working rules (takim)',
   'Before acting, check whether one of these skills applies and invoke it with the Skill tool:',
-  '- Changing existing code → `ekip-kit:safe-change` (baseline tests first, impact analysis, smallest diff at the root cause).',
-  '- Bug, failing test, or unexpected behavior → `ekip-kit:systematic-debugging`, then `ekip-kit:test-driven-development` (failing test first).',
-  '- New behavior → `ekip-kit:test-driven-development`.',
-  '- Writing or changing tests, or reporting test results → `ekip-kit:test-integrity`.',
-  '- Auth, secrets, external input, dependencies, migrations → `ekip-kit:security-gate`.',
-  '- Recording or cleaning up project knowledge → `ekip-kit:team-memory` (archive, never delete).',
+  '- Changing existing code → `takim:safe-change` (baseline tests first, impact analysis, smallest diff at the root cause).',
+  '- Bug, failing test, or unexpected behavior → `takim:systematic-debugging`, then `takim:test-driven-development` (failing test first).',
+  '- New behavior → `takim:test-driven-development`.',
+  '- Writing or changing tests, or reporting test results → `takim:test-integrity`.',
+  '- Auth, secrets, external input, dependencies, migrations → `takim:security-gate`.',
+  '- Recording or cleaning up project knowledge → `takim:team-memory` (archive, never delete).',
   'Before saying done: run the tests in this session and quote the command and result; name any pre-existing failure you left untouched.',
 ].join('\n');
 
@@ -57,7 +57,7 @@ function build(input) {
   const kd = path.join(dir, config.knowledgeDir);
   if (!fromFile && !fs.existsSync(kd)) return CORE;
 
-  const parts = [CORE, '## Team guardrails (ekip-kit)'];
+  const parts = [CORE, '## Team guardrails (takim)'];
   if (input.source === 'compact') {
     parts.push('Context was just compacted. Before continuing: re-read the active work-log for the current task, re-check "Do not touch" and invariants below, and re-run the baseline tests before further edits. Do not rely on memory of earlier decisions — read them.');
   }

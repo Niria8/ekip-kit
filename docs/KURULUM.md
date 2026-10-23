@@ -5,9 +5,9 @@
 Kit bir Claude Code plugin'i ve kendi marketplace'i olan bir git deposudur.
 
 - **Ekip için (önerilen):** Depoyu şirketin GitHub'ına (veya iç git
-  sunucusuna) gönderin, örn. `ORG/ekip-kit`. Sonra
+  sunucusuna) gönderin, örn. `ORG/takim`. Sonra
   `skills/team-project-setup/templates/.claude/settings.json` içindeki
-  `ORG/ekip-kit` değerini gerçek depo adıyla değiştirin. Ekip üyelerinin bu
+  `ORG/takim` değerini gerçek depo adıyla değiştirin. Ekip üyelerinin bu
   depoya okuma erişimi olmalı.
 - **Tek makinede denemek için:** klasör yolu yeterlidir.
 
@@ -16,7 +16,7 @@ claude plugin marketplace add <depo-url-veya-klasor-yolu> --scope project
 ```
 
 ```bash
-claude plugin install ekip-kit@ekip-kit-marketplace --scope project
+claude plugin install takim@takim-marketplace --scope project
 ```
 
 Projede eski `claude-team-kit` açıksa kapatın (ikisi aynı hook'ları çalıştırır):
@@ -72,10 +72,10 @@ yönergeyle otomatik devreye girer.
   bildirin:
 
 ```bash
-EKIP_KIT_DISABLE=guard claude
+TAKIM_DISABLE=guard claude
 ```
 
-  (`EKIP_KIT_DISABLE=1` hepsini kapatır.)
+  (`TAKIM_DISABLE=1` hepsini kapatır.)
 - Kitin kendi testleri:
 
 ```bash

@@ -3,7 +3,7 @@ name: systematic-debugging
 description: Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes
 ---
 
-> Source: [obra/superpowers](https://github.com/obra/superpowers) `skills/systematic-debugging` (MIT, Jesse Vincent). Vendored into ekip-kit; see NOTICE.md for local changes.
+> Source: [obra/superpowers](https://github.com/obra/superpowers) `skills/systematic-debugging` (MIT, Jesse Vincent). Vendored into takim; see NOTICE.md for local changes.
 
 # Systematic Debugging
 

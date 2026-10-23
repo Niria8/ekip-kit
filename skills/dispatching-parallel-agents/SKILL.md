@@ -3,7 +3,7 @@ name: dispatching-parallel-agents
 description: Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies
 ---
 
-> Source: [obra/superpowers](https://github.com/obra/superpowers) `skills/dispatching-parallel-agents` (MIT, Jesse Vincent). Vendored into ekip-kit; see NOTICE.md for local changes.
+> Source: [obra/superpowers](https://github.com/obra/superpowers) `skills/dispatching-parallel-agents` (MIT, Jesse Vincent). Vendored into takim; see NOTICE.md for local changes.
 
 # Dispatching Parallel Agents
 

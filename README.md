@@ -1,4 +1,4 @@
-# Ekip Kit
+# Takım
 
 > **Türkçe özet.** Ekip olarak Claude Code kullanırken yaşanan beş sorun için
 > hazırlanmış plugin: (1) ortak, kategorilere ayrılmış proje hafızası,
@@ -75,8 +75,8 @@ author's assumptions. Flow and risk table: [`docs/WORKFLOW.md`](docs/WORKFLOW.md
 
 Hooks fail open on their own internal errors, so a hook bug never blocks
 work. If a hook gets in your way, start Claude Code with
-`EKIP_KIT_DISABLE=1` (all hooks) or e.g.
-`EKIP_KIT_DISABLE=guard,stop-gate` (only those) — and report the
+`TAKIM_DISABLE=1` (all hooks) or e.g.
+`TAKIM_DISABLE=guard,stop-gate` (only those) — and report the
 false positive so the rule can be fixed.
 
 ## CI template
@@ -110,13 +110,13 @@ Details and rationale: [`docs/DESIGN.md`](docs/DESIGN.md).
 
 ```
 claude plugin marketplace add <this-repo-url-or-local-path>
-claude plugin install ekip-kit
+claude plugin install takim
 ```
 
 Try it locally without installing:
 
 ```
-claude --plugin-dir ./ekip-kit
+claude --plugin-dir ./takim
 ```
 
 Then, in a project:

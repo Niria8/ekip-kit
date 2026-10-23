@@ -9,6 +9,16 @@ and `package.json` together (a test checks they match).
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-23
+
+### Changed
+- Renamed from ekip-kit to **takim** (display name "Takım"): plugin
+  `takim`, marketplace `takim-marketplace`, agents and skills
+  `takim:<name>`, kill switch `TAKIM_DISABLE`. Projects set up with an
+  earlier version must re-register the marketplace, re-install the plugin
+  under the new name, and replace `ekip-kit` in their `CLAUDE.md`,
+  `.claude/settings.json` and `.claude/rules/workflow.md`.
+
 ## [0.3.0] - 2026-10-23
 
 Fixes found by running the kit on real code (the FastAPI demo project;

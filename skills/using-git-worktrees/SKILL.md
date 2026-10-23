@@ -3,7 +3,7 @@ name: using-git-worktrees
 description: Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback
 ---
 
-> Source: [obra/superpowers](https://github.com/obra/superpowers) `skills/using-git-worktrees` (MIT, Jesse Vincent). Vendored into ekip-kit; see NOTICE.md for local changes.
+> Source: [obra/superpowers](https://github.com/obra/superpowers) `skills/using-git-worktrees` (MIT, Jesse Vincent). Vendored into takim; see NOTICE.md for local changes.
 
 # Using Git Worktrees
 

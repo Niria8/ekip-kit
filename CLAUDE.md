@@ -1,4 +1,4 @@
-# ekip-kit
+# takim
 
 A standalone Claude Code plugin that makes Claude dependable for software
 teams: shared project memory in the repo (archived, never deleted), a
@@ -46,7 +46,7 @@ There is no build step and no dependency to install — keep it that way.
   `.claude-plugin/marketplace.json`, `package.json`; bump them together
   and add the matching CHANGELOG section (a test enforces both).
 - Every hook entry point goes through `lib.run('<hook-name>', ...)` so the
-  `EKIP_KIT_DISABLE` kill switch keeps working.
+  `TAKIM_DISABLE` kill switch keeps working.
 - MIT licensed; do not copy code from projects with incompatible licenses,
   and credit MIT sources you copy from.
 - Repository content is English, except the team-facing Turkish docs
@@ -56,13 +56,13 @@ There is no build step and no dependency to install — keep it that way.
   superseded, not silently deleted.
 
 ## Status (keep current)
-- v0.3.0 (ekip-kit, built on claude-team-kit 0.1.0); changes since are
+- v0.4.0 (takim, built on claude-team-kit 0.1.0); changes since are
   under Unreleased in `CHANGELOG.md`. `npm test` green locally on Windows
   (Node 24); this repo has no CI remote yet.
 - Verified in headless `claude -p` sessions (`docs/KARSILASTIRMA.md`):
   plugin loading via `--plugin-dir`, skill invocation, SessionStart
   injection, protected-path `ask` (denied when nobody can answer).
-- NOT yet verified: agent/command invocation (`ekip-kit:<agent>` naming)
+- NOT yet verified: agent/command invocation (`takim:<agent>` naming)
   in an interactive session, hook `ask` under auto/bypass permission modes,
   `paths:`-scoped rules, marketplace auto-offer from the template
   `settings.json`.

@@ -1,6 +1,6 @@
 # Workflow (always loaded)
 
-Roles are ekip-kit subagents. The author of a change never approves it.
+Roles are takim subagents. The author of a change never approves it.
 
 | Change | Planner (`/plan-change`) | After `implementer` (`/verify`) |
 |---|---|---|

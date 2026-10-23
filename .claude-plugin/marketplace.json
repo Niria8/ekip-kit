@@ -1,14 +1,14 @@
 {
-  "name": "ekip-kit-marketplace",
+  "name": "takim-marketplace",
   "owner": {
     "name": "Kaan Ozturk"
   },
   "plugins": [
     {
-      "name": "ekip-kit",
+      "name": "takim",
       "source": ".",
       "description": "Shared team memory, regression guardrails, and hook-enforced security and test integrity for Claude Code.",
-      "version": "0.3.0"
+      "version": "0.4.0"
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 <!-- Project-specific security rules: things a reviewer cannot infer from the
      code. Read by:
-       - the security-gate skill (ekip-kit), and
+       - the security-gate skill (takim), and
        - Anthropic's security-guidance plugin, if installed, which appends
          this file to its LLM diff-review prompt (8 KB budget, shared with
          ~/.claude/claude-security-guidance.md; requires Python).
