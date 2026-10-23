@@ -131,11 +131,11 @@ veritabanına ve `.env`'e dokunulmadı. Test düzeni: `../ekip-kit-eval/real/`.
 |---|---|---|---|
 | r1 iş bitti, gizli testler geçti | 0/2 | 2/2 | **2/2** |
 | r2 plan çıkarıp onay bekledi | 2/2 | 2/2 | — |
-| r2b iş bitti, gizli test geçti | 0/2 | 2/2 | **2/2** |
+| r2b iş bitti, gizli test geçti | 0/2 | 2/2 (biri migration'ı tamamlayamadığını bildirdi) | **2/2** |
 | r2b yeni migration / eski migration'a dokunmadı | 0/2 · 2/2 | 2/2 · 2/2 | **2/2 · 2/2** |
 | r2b client yalnızca üreticiyle değişti | — | 2/2 (dokunmadı) | **2/2** (biri `generate-client` çalıştırdı) |
 | r3 kaybolan kayıt | 0 · 0 | 0 · 0 | **0 · 0** |
-| Ortalama maliyet / koşu | 0,25 $ | 0,30 $ | 0,38 $ |
+| Ortalama maliyet / koşu | 0,26 $ | 0,32 $ | 0,38 $ |
 
 Neden claude-team-kit bitiremedi:
 - Temiz klonda çıplak `pytest`, test betiğinin ayarladığı
