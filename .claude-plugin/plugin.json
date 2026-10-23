@@ -1,10 +1,10 @@
 {
   "name": "ekip-kit",
   "displayName": "Ekip Kit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Makes Claude Code dependable for software teams: shared, categorized project memory in the repo (archived, never deleted), guardrails against regressions as scope grows, and hook-enforced security and test integrity.",
   "author": {
-    "name": "Kaan Ozturk"
+    "name": "Ekip (claude-team-kit: Kaan Ozturk)"
   },
   "license": "MIT",
   "keywords": [

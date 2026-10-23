@@ -8,7 +8,7 @@
       "name": "ekip-kit",
       "source": ".",
       "description": "Shared team memory, regression guardrails, and hook-enforced security and test integrity for Claude Code.",
-      "version": "0.1.0"
+      "version": "0.2.0"
     }
   ]
 }

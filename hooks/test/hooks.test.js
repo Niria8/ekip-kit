@@ -203,8 +203,16 @@ test('session context injects DONTs, invariants, protected paths and active ledg
   assert.doesNotMatch(text, /Old/);
 });
 
-test('session context stays silent in projects without the structure', () => {
+test('session context injects only the core working rules in projects without the structure', () => {
   const dir = tmpProject(null);
+  const text = sessionContext.build({ cwd: dir, source: 'startup' });
+  assert.match(text, /ekip-kit:safe-change/);
+  assert.match(text, /ekip-kit:systematic-debugging/);
+  assert.doesNotMatch(text, /Knowledge index/);
+});
+
+test('session context is off when sessionContext.enabled is false', () => {
+  const dir = tmpProject(Object.assign({}, CONFIG, { sessionContext: { enabled: false } }));
   assert.equal(sessionContext.build({ cwd: dir, source: 'startup' }), null);
 });
 

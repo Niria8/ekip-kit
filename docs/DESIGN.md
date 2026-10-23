@@ -97,8 +97,11 @@ should still be reported and fixed.
 
 ### `hooks/session-context.js` — SessionStart
 
-Runs on startup, resume, `/clear`, and compaction, in projects that have
-`.claude/guardrails.json` or a knowledge directory. Injects (headings
+Runs on startup, resume, `/clear`, and compaction. In every project it
+injects a short "working rules" block that maps tasks to the kit's skills
+(plugin skills are otherwise rarely invoked for ordinary coding tasks —
+see `docs/KARSILASTIRMA.md`). In projects that have
+`.claude/guardrails.json` or a knowledge directory it adds (headings
 only, capped at `maxChars`): DON'T entries, invariants, protected paths,
 active work logs with their next steps. After compaction it also tells
 Claude to re-read the ledger and re-run the baseline before editing.

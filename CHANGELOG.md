@@ -9,7 +9,43 @@ and `package.json` together (a test checks they match).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-23
+
+First ekip-kit release: claude-team-kit plus the parts of other kits that
+won a head-to-head comparison (see `docs/KARSILASTIRMA.md`).
+
 ### Added
+- Skills from obra/superpowers (MIT): `systematic-debugging` (with its
+  root-cause-tracing, defense-in-depth, condition-based-waiting notes and
+  `find-polluter.sh`), `test-driven-development` (with
+  `writing-good-tests.md`), `receiving-code-review`, `using-git-worktrees`,
+  `finishing-a-development-branch`, `dispatching-parallel-agents`.
+- CI template: `sast` job running semgrep (`p/default`); on a PR only
+  newly introduced findings fail. `security-gate` lists semgrep as evidence.
+- `NOTICE.md` (sources and local changes), `docs/KARSILASTIRMA.md`
+  (comparison method and results).
+
+### Changed
+- Renamed from claude-team-kit to ekip-kit; kill switch is now
+  `EKIP_KIT_DISABLE`.
+- SessionStart hook now always injects a short "working rules" block that
+  maps tasks to skills (`safe-change`, `systematic-debugging`,
+  `test-driven-development`, `test-integrity`, `security-gate`,
+  `team-memory`); project knowledge is added on top when the project is set
+  up. (Before: silent in projects without `docs/knowledge/`; in the
+  comparison the plugin's coding skills were then never invoked.) Turn it
+  off with `sessionContext.enabled: false`.
+- `safe-change`, `implementer`, `change-safety` rule: only a red test in the
+  area being changed stops the work; an unrelated pre-existing failure is
+  left untouched and reported. (Before: any red baseline stopped the task —
+  3/3 runs left the task undone in the comparison.)
+- `safe-change`, `implementer`, `change-safety` rule: bugs are fixed at the
+  root cause; "smallest diff" no longer allows patching the symptom next to
+  a shared helper. (Before: 2/3 runs left the shared bug in place.)
+
+### Inherited from claude-team-kit after 0.1.0
+
+#### Added
 - `LICENSE` (MIT).
 - Kill switch: `EKIP_KIT_DISABLE=1` turns all hooks off; a comma list
   (`guard`, `session-context`, `stop-gate`) turns off only those.
@@ -20,7 +56,7 @@ and `package.json` together (a test checks they match).
 - Tests: version consistency across the three manifests and this changelog;
   memory-guard false-positive cases; kill switch.
 
-### Fixed
+#### Fixed
 - Memory-deletion guard matched paths as substrings of the whole command,
   so unrelated commands such as `rm -rf src/memory/cache` or
   `rm docs/knowledge-export.zip` were denied. It now checks only the path
@@ -30,7 +66,7 @@ and `package.json` together (a test checks they match).
   `node --test`. CI runs on Node 24 with `actions/checkout@v5` and
   `actions/setup-node@v5`, without fail-fast.
 
-### Changed
+#### Changed
 - Shell overwrites of memory files (`Set-Content`, `Out-File`) now ask for
   confirmation, since they bypass the shrink check of the Write tool.
 

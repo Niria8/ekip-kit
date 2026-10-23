@@ -1,5 +1,16 @@
 # Ekip Kit
 
+> **Türkçe özet.** Ekip olarak Claude Code kullanırken yaşanan beş sorun için
+> hazırlanmış plugin: (1) ortak, kategorilere ayrılmış proje hafızası,
+> (2) "hafızayı temizle" denince silmek yerine arşivleme, (3) sıkı güvenlik
+> ve test kuralları, (4) kapsam büyüdükçe sağlam kısımları bozmama,
+> (5) ekip iş akışı. Temeli [claude-team-kit](https://github.com/Beshlee/claude-team-kit);
+> üzerine [superpowers](https://github.com/obra/superpowers)'tan
+> karşılaştırma testini kazanan skill'ler ve CI'a semgrep eklendi. Hangi
+> parçanın neden seçildiği ve test sonuçları:
+> [`docs/KARSILASTIRMA.md`](docs/KARSILASTIRMA.md). Kaynaklar ve lisanslar:
+> [`NOTICE.md`](NOTICE.md).
+
 A Claude Code plugin that makes Claude dependable when a whole software
 team uses it on the same codebase. It addresses five recurring problems:
 
@@ -8,8 +19,8 @@ team uses it on the same codebase. It addresses five recurring problems:
 | Each person's Claude memory is private, unstructured, and lost on compaction | Shared, categorized knowledge **in the repo** (`docs/knowledge/`), indexed by a lean `CLAUDE.md` and short `.claude/rules/`, changed through PRs |
 | "Clean up the memory" deletes details that are needed later | **Archive, never delete** — entries move to `archive/` with an index line and a pointer; a hook blocks deletion of memory files |
 | Security and tests are only as strict as Claude remembers to be | Hooks block secret reads/writes and dangerous commands, and ask before test-weakening edits; `security-gate` and `test-integrity` skills require evidence |
-| Claude breaks working parts, especially as scope grows | `safe-change` protocol, `task-ledger` work logs, protected paths, and re-injection of critical knowledge after every compaction |
-| Team usage is ad hoc | One-command project scaffolding and a team playbook |
+| Claude breaks working parts, especially as scope grows | `safe-change` protocol, root-cause `systematic-debugging`, `test-driven-development`, `task-ledger` work logs, protected paths, and re-injection of critical knowledge after every compaction |
+| Team usage is ad hoc | One-command project scaffolding, a team playbook, and skills for worktrees, parallel agents, code review, and finishing a branch |
 
 Self-contained: it ships its own roles (subagents), commands, skills,
 hooks, project templates, and CI gate. Nothing else is required.
@@ -38,6 +49,12 @@ author's assumptions. Flow and risk table: [`docs/WORKFLOW.md`](docs/WORKFLOW.md
 | `task-ledger` | Keep multi-session / multi-person work on track across compaction and hand-offs |
 | `test-integrity` | No skipped/loosened tests, failing-test-first bug fixes, results actually run |
 | `security-gate` | Security review with evidence: scans, dependency audit, negative auth tests; reads the project's `.claude/claude-security-guidance.md` |
+| `systematic-debugging` | Find the root cause before any fix; stop and question the design after three failed fixes (from superpowers) |
+| `test-driven-development` | Red → green → refactor; watch the test fail before writing the code (from superpowers) |
+| `receiving-code-review` | Check review feedback against the code before applying it; push back with reasons (from superpowers) |
+| `using-git-worktrees` | Isolated workspace per task so parallel work does not collide (from superpowers) |
+| `finishing-a-development-branch` | Green suite, then merge / PR / keep — the human chooses (from superpowers) |
+| `dispatching-parallel-agents` | Split independent problems across agents (from superpowers) |
 
 ## Commands
 
@@ -53,7 +70,7 @@ author's assumptions. Flow and risk table: [`docs/WORKFLOW.md`](docs/WORKFLOW.md
 | Hook | Always on | Opt-in via `.claude/guardrails.json` |
 |---|---|---|
 | `PreToolUse` guard | deny catastrophic commands and `curl \| sh`; deny deleting/emptying memory and knowledge files; deny reading `.env`/keys; deny writing high-confidence secrets; ask on hardcoded credentials, newly added insecure code (SQL/command injection, `eval`, XSS sinks, disabled TLS, weak hashes, insecure randomness, unsafe deserialization, wildcard CORS, SSRF, path traversal, secrets in logs), force-push, `reset --hard`, destructive SQL, infra changes, test skips, removed assertions | ask before editing protected paths |
-| `SessionStart` | — | inject DON'Ts, invariants, protected paths, and active work logs at startup and after compaction |
+| `SessionStart` | short "which skill for which task" working rules | inject DON'Ts, invariants, protected paths, and active work logs at startup and after compaction |
 | `Stop` | — | once per change set: ask for tests when source changed without tests, and for contract tests when a protected path changed |
 
 Hooks fail open on their own internal errors, so a hook bug never blocks
@@ -76,8 +93,16 @@ Not required; each adds something the kit deliberately does not do.
 
 - Anthropic's **security-guidance** plugin (LLM diff and commit security
   review; needs Python) — reads the same `.claude/claude-security-guidance.md`.
-- **superpowers** (planning, TDD, verification-before-completion skills) —
-  no overlap with the memory and guardrail parts of this kit.
+- **semgrep/skills** (`code-security`, `llm-security`, `semgrep` skills) —
+  install with `npx skills add semgrep/skills`. Not bundled: they are under
+  the Semgrep Rules License, not MIT. The CI template already runs semgrep.
+- **Graphify** (codebase knowledge graph) or **Serena** (symbol-level
+  navigation, find references) — help with impact analysis in large
+  codebases.
+- **Obsidian** on the `docs/knowledge/` folder — a human-friendly view of the
+  same files; no extra setup.
+- PR review services (**CodeRabbit**, **Claude Code Review**) — a second
+  reviewer on every PR, in addition to `code-reviewer`.
 
 Details and rationale: [`docs/DESIGN.md`](docs/DESIGN.md).
 
