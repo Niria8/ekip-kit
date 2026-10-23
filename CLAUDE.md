@@ -54,11 +54,15 @@ There is no build step and no dependency to install — keep it that way.
   superseded, not silently deleted.
 
 ## Status (keep current)
-- v0.1.0 released; changes since are under Unreleased in `CHANGELOG.md`.
-  CI green on Linux/Windows/macOS (Node 24).
-- NOT yet verified in a live Claude Code session: plugin loading,
-  agent/command invocation (`ekip-kit:<agent>` naming), hook
-  `ask` behavior under auto/bypass permission modes, `paths:`-scoped rules,
-  marketplace auto-offer from the template `settings.json`.
+- v0.2.0 (ekip-kit, built on claude-team-kit 0.1.0); changes since are
+  under Unreleased in `CHANGELOG.md`. `npm test` green locally on Windows
+  (Node 24); this repo has no CI remote yet.
+- Verified in headless `claude -p` sessions (`docs/KARSILASTIRMA.md`):
+  plugin loading via `--plugin-dir`, skill invocation, SessionStart
+  injection, protected-path `ask` (denied when nobody can answer).
+- NOT yet verified: agent/command invocation (`ekip-kit:<agent>` naming)
+  in an interactive session, hook `ask` under auto/bypass permission modes,
+  `paths:`-scoped rules, marketplace auto-offer from the template
+  `settings.json`.
 - The project CI template (gitleaks v8.18.4, osv-scanner v1.9.1, semgrep 1.95.0) has not
   run in a real project yet.
