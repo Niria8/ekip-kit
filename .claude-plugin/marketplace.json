@@ -1,0 +1,14 @@
+{
+  "name": "claude-team-kit-marketplace",
+  "owner": {
+    "name": "Kaan Ozturk"
+  },
+  "plugins": [
+    {
+      "name": "claude-team-kit",
+      "source": ".",
+      "description": "Shared team memory, regression guardrails, and hook-enforced security and test integrity for Claude Code.",
+      "version": "0.1.0"
+    }
+  ]
+}

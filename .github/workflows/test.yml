@@ -1,0 +1,21 @@
+name: hooks-tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - run: npm test
+      - name: Validate JSON files
+        run: node -e "for (const f of ['hooks/hooks.json','.claude-plugin/plugin.json','.claude-plugin/marketplace.json','skills/team-project-setup/templates/.claude/settings.json','skills/team-project-setup/templates/.claude/guardrails.json']) JSON.parse(require('fs').readFileSync(f,'utf8'))"

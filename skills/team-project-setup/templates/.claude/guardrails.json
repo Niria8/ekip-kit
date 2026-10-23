@@ -1,0 +1,42 @@
+{
+  "$comment": "Read by the claude-team-kit plugin hooks. Commit this file.",
+  "knowledgeDir": "docs/knowledge",
+  "protectedPaths": [
+    {
+      "glob": "src/payments/**",
+      "reason": "Stable, production-critical. See INV-001 in docs/knowledge/invariants/INVARIANTS.md.",
+      "contractTests": [
+        "tests/payments/"
+      ]
+    }
+  ],
+  "sourceGlobs": [
+    "src/**",
+    "app/**",
+    "lib/**"
+  ],
+  "testGlobs": [
+    "tests/**",
+    "test/**",
+    "**/__tests__/**",
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/*_test.*",
+    "**/test_*.py"
+  ],
+  "testGate": {
+    "enabled": true
+  },
+  "secretScan": {
+    "enabled": true,
+    "allowPatterns": []
+  },
+  "codeScan": {
+    "enabled": true,
+    "ignoreRules": []
+  },
+  "sessionContext": {
+    "enabled": true,
+    "maxChars": 6000
+  }
+}

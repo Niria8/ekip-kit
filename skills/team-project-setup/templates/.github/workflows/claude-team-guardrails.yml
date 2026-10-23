@@ -1,0 +1,75 @@
+# CI gate for projects set up with claude-team-kit. Hooks catch mistakes on
+# one developer's machine; this catches them for everyone, on every PR.
+# Fill in the two TODO steps in the "tests" job (team-project-setup does this).
+# Tool versions are pinned on purpose — bump them deliberately.
+name: claude-team-guardrails
+
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+jobs:
+  knowledge:
+    name: Knowledge tree (format + nothing deleted)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Check knowledge
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            node .claude/scripts/check-knowledge.js --base "origin/${{ github.base_ref }}"
+          else
+            node .claude/scripts/check-knowledge.js
+          fi
+
+  secrets:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: gitleaks
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            RANGE="${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"
+          else
+            RANGE="${{ github.event.before }}..${{ github.sha }}"
+            case "${{ github.event.before }}" in 0000000000000000000000000000000000000000|"") RANGE="${{ github.sha }}~1..${{ github.sha }}";; esac
+          fi
+          docker run --rm -v "$PWD:/repo" ghcr.io/gitleaks/gitleaks:v8.18.4 \
+            detect --source /repo --redact --verbose --log-opts="$RANGE"
+
+  dependencies:
+    name: Dependency vulnerabilities (osv-scanner)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: osv-scanner
+        run: |
+          set +e
+          docker run --rm -v "$PWD:/src" ghcr.io/google/osv-scanner:v1.9.1 --recursive /src
+          code=$?
+          # 128 = no lockfiles/manifests found: nothing to scan, not a failure.
+          if [ "$code" = "128" ]; then echo "No package manifests found."; exit 0; fi
+          exit $code
+
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      # TODO: add the language setup step (actions/setup-node, actions/setup-python, ...).
+      - name: Install
+        run: echo "TODO — replace with the project's install command" && exit 1
+      - name: Test
+        run: echo "TODO — replace with the project's full test command" && exit 1

@@ -1,0 +1,42 @@
+{
+  "extraKnownMarketplaces": {
+    "claude-team-kit-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "Beshlee/claude-team-kit"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "claude-team-kit@claude-team-kit-marketplace": true
+  },
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/.env)",
+      "Read(./**/.env.*)",
+      "Read(./**/*.pem)",
+      "Read(./**/*.key)",
+      "Read(./**/id_rsa*)",
+      "Read(./secrets/**)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(rm -rf /:*)",
+      "Bash(curl * | sh:*)",
+      "Bash(curl * | bash:*)",
+      "Bash(wget * | sh:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean:*)",
+      "Bash(git checkout -- :*)",
+      "Bash(git restore:*)",
+      "Bash(npm publish:*)",
+      "Bash(docker push:*)",
+      "Bash(terraform apply:*)",
+      "Bash(kubectl delete:*)"
+    ]
+  }
+}

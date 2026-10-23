@@ -1,0 +1,8 @@
+# Same line endings on every OS, so Windows and macOS/Linux teammates do not
+# produce whole-file diffs. Hooks and templates are read byte-for-byte.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
