@@ -63,6 +63,23 @@ jobs:
           if [ "$code" = "128" ]; then echo "No package manifests found."; exit 0; fi
           exit $code
 
+  sast:
+    name: Static analysis (semgrep)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: semgrep
+        run: |
+          # On a PR only findings introduced by the PR fail the job.
+          BASELINE=""
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASELINE="--baseline-commit ${{ github.event.pull_request.base.sha }}"
+          fi
+          docker run --rm -v "$PWD:/src" -w /src semgrep/semgrep:1.95.0 \
+            semgrep scan --config p/default --error --metrics off $BASELINE
+
   tests:
     name: Tests
     runs-on: ubuntu-latest

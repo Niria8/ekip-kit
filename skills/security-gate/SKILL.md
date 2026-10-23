@@ -52,6 +52,7 @@ gate, not as a replacement for it.
 
 Run what the project has and quote the output:
 - secret scan of the changed files (e.g. `gitleaks detect --no-git -s <path>`),
+- static analysis of the changed files (e.g. `semgrep scan --config p/default <paths>`),
 - dependency audit for changed manifests (`npm audit`, `pip-audit`,
   `osv-scanner`, `dotnet list package --vulnerable`, ...),
 - for every protected endpoint touched: a test proving an

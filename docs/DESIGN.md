@@ -148,6 +148,7 @@ GitHub Actions workflow:
 | knowledge | an entry lacks required frontmatter, has an invalid status or date, a single-file category heading has no id, an id is reused in the active set, or — on a PR — a knowledge, `CLAUDE.md`, or `.claude/rules/` file was **deleted** (moving it to `archive/` passes) |
 | secrets | gitleaks finds a secret in the PR's commits |
 | dependencies | osv-scanner finds a known vulnerability in a lockfile/manifest |
+| sast | semgrep (`p/default` rules) finds an issue the PR introduced |
 | tests | the project's own tests fail (the template fails until its TODOs are filled) |
 
 This is the non-local half of "archive, never delete": the hook stops

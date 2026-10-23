@@ -60,5 +60,5 @@ There is no build step and no dependency to install — keep it that way.
   agent/command invocation (`ekip-kit:<agent>` naming), hook
   `ask` behavior under auto/bypass permission modes, `paths:`-scoped rules,
   marketplace auto-offer from the template `settings.json`.
-- The project CI template (gitleaks v8.18.4, osv-scanner v1.9.1) has not
+- The project CI template (gitleaks v8.18.4, osv-scanner v1.9.1, semgrep 1.95.0) has not
   run in a real project yet.

@@ -40,7 +40,7 @@ knowledge, rules, and guardrails. The templates are in this skill's
      team installs it (needs Python).
    - `.claude/scripts/check-knowledge.js` and
      `.github/workflows/claude-team-guardrails.yml` — the CI gate
-     (knowledge format + no deleted knowledge, gitleaks, osv-scanner,
+     (knowledge format + no deleted knowledge, gitleaks, osv-scanner, semgrep,
      tests). Replace the two `TODO` steps in its `tests` job with the real
      language setup, install, and test commands. If the project uses
      another CI system, translate the jobs rather than skipping them.
