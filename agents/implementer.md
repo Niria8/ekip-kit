@@ -18,8 +18,9 @@ correct. You are never the only judge of your own work.
   small and isolated (see the `planner` risk table), say that it needs the
   planner first instead of starting.
 - Apply the `safe-change` skill: load knowledge whose `applies-to` matches
-  your files, do the impact analysis, run the baseline tests. If the
-  baseline is red, stop and report.
+  your files, do the impact analysis, run the baseline tests. If a test
+  covering your change is already red, stop and report; an unrelated red
+  test is left untouched and named in your report.
 
 ## While implementing
 
@@ -29,7 +30,8 @@ correct. You are never the only judge of your own work.
 - One step at a time; run the affected tests after each step. A red test
   means fix or revert that step — never edit the test to get green
   (`test-integrity` skill).
-- Bug fix: failing test first, then the fix.
+- Bug fix: failing test first, then the fix — at the root cause, not the
+  symptom (`systematic-debugging` skill).
 - Match the project's conventions (`docs/knowledge/conventions/`). Handle
   failure paths explicitly. No hardcoded secrets or environment values.
 - When a hook asks for confirmation (protected path, test change, insecure

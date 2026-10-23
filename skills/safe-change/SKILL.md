@@ -23,9 +23,12 @@ out of context. This protocol targets exactly those.
   list down. If it is longer than expected, stop and tell the user before
   continuing.
 - **Baseline.** Run the tests covering the area (and the contract tests of
-  any protected path you touch). Record the result. If the baseline is
-  already failing, stop and report — do not mix a pre-existing failure
-  into your change.
+  any protected path you touch). Record the result. If a test is already
+  failing: when it covers code you are about to change, stop and report
+  before editing. When it is unrelated to your change, do not fix, skip,
+  or edit it — record it, carry on with the task, and name it in your
+  final report as a pre-existing failure. Never mix a pre-existing
+  failure into your change.
 
 ## 2. While changing
 
@@ -42,6 +45,12 @@ out of context. This protocol targets exactly those.
   (test-integrity skill). If you believe a test is wrong, explain why and ask.
 - For a bug fix: first a test that fails for the reported reason, then the
   fix, then show that the test passes.
+- Fix a bug at its root cause, not where the symptom shows up
+  (`systematic-debugging` skill). "Smallest diff" never means patching the
+  symptom: if the cause is in shared code, fix it there, cover its other
+  callers from your impact list with tests, and say so. If the source is
+  a protected path or out of scope, stop and ask — do not leave the cause
+  in place behind a local workaround.
 - If the plugin hook asks before editing a protected path, read the
   reason and the invariant it cites, and justify the edit to the user.
 
