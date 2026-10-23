@@ -8,7 +8,7 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..', '..');
 // Commands that belong to Claude Code itself or to other plugins the docs mention.
-const EXTERNAL_COMMANDS = new Set(['clear', 'compact', 'init', 'plugin', 'revise-claude-md']);
+const EXTERNAL_COMMANDS = new Set(['clear', 'compact', 'init', 'plugin', 'revise-claude-md', 'worktree']);
 const TOOLS = new Set(['Read', 'Write', 'Edit', 'Grep', 'Glob', 'Bash', 'Agent', 'WebFetch', 'WebSearch', 'NotebookEdit']);
 
 function frontmatter(file) {
