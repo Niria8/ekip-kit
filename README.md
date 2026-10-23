@@ -66,7 +66,7 @@ false positive so the rule can be fixed.
 
 `team-project-setup` also installs `.github/workflows/claude-team-guardrails.yml`
 in the project: knowledge-tree check (format, unique ids, **no deleted
-knowledge** on a PR), gitleaks secret scan, osv-scanner dependency audit,
+knowledge** on a PR), gitleaks secret scan, osv-scanner dependency audit, semgrep static analysis,
 and the project's tests. Hooks catch mistakes on one machine; CI catches
 them for everyone.
 
