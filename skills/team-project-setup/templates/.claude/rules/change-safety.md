@@ -5,7 +5,10 @@
 - Before editing a file, check `docs/knowledge/invariants/INVARIANTS.md`
   and any knowledge entry whose `applies-to` matches it.
 - Run the relevant tests BEFORE changing code (baseline) and AFTER each
-  step. A red test in the area you change: stop and report. An unrelated
+  step, with the documented test command (not a bare runner). Tests that
+  cannot start (import/collection or environment error) are a setup
+  problem: retry the way the test script / CI does, and report it.
+  A red test in the area you change: stop and report. An unrelated
   red test: leave it untouched, finish the task, and name it in your
   report. Never mix a pre-existing failure into your change.
 - Fix bugs at the root cause, not the symptom; if the cause is in shared

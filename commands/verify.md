@@ -17,7 +17,9 @@ Verify the current change independently, following `docs/WORKFLOW.md`
    access, dependency manifests or lockfiles, migrations, or LLM features,
    or if any guard-hook security ask was confirmed in this session.
 3. **Run the roles in order, each as a separate subagent** (they must not
-   share the implementer's context):
+   share the implementer's context). Run each in the foreground and wait
+   for its report — never as a background task: each role needs the
+   previous one's verdict.
    - `ekip-kit:regression-verifier` — give it the criteria, the
      base ref, and the changed files. If its verdict is "back to
      implementer", stop here and report.

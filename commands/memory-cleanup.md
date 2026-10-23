@@ -8,6 +8,9 @@ Run the `ekip-kit:knowledge-curator` agent. Focus: $ARGUMENTS
 (empty = the whole knowledge tree; `personal` = the user's auto-memory
 directory for this project, using an `archive/` subfolder there).
 
+Run the curator in the foreground and wait for each result before you
+reply — never as a background task: every step below depends on it.
+
 1. Ask the curator for the **audit only** first. Show the user the list:
    per entry the class (stale / duplicate / too detailed / unverified /
    keep) and the proposed action.

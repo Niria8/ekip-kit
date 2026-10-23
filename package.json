@@ -1,6 +1,6 @@
 {
   "name": "ekip-kit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "Development scripts for the ekip-kit Claude Code plugin. The plugin itself has no runtime dependencies.",
   "license": "MIT",

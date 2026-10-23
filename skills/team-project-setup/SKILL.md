@@ -19,6 +19,10 @@ knowledge, rules, and guardrails. The templates are in this skill's
    - `CLAUDE.md` — fill in name, one-paragraph description, and the real
      install/test/lint commands (find them in package.json, pyproject,
      Makefile, CI config — do not guess; leave `<command>` if not found).
+     Copy the environment the test script or CI sets up (env vars, services)
+     into the command itself, and run each test command once to confirm it
+     starts — a command that only works with untracked local files
+     (build output, a local `.env`) makes every later baseline look red.
    - `.claude/rules/workflow.md`, `change-safety.md`, `testing.md`,
      `security.md`.
    - `.claude/rules/area-example.md` — only as a starting point; rename

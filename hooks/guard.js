@@ -4,13 +4,27 @@
 //   2. deleting or emptying team/personal memory (archive instead)
 //   3. reading secret files
 //   4. writing secrets into files
-//   5. editing protected paths (from .claude/guardrails.json)
+//   5. editing protected paths (from .claude/guardrails.json); files created in
+//      the current change (new or untracked) are exempt
 //   6. weakening tests (new skip markers, removed assertions)
 //   7. insecure code patterns (OWASP-style: injection, XSS, weak crypto, ...)
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 const lib = require('./lib');
+
+// A file created in the current change (new, or untracked in git) is not yet
+// the stable code a protected path guards — e.g. a migration being written.
+function isNewFile(dir, rel, tool, existing) {
+  if (tool === 'Write' && existing === null) return true;
+  try {
+    execFileSync('git', ['ls-files', '--error-unmatch', '--', rel], { cwd: dir, stdio: 'ignore', timeout: 5000 });
+    return false;
+  } catch (e) {
+    return e.status === 1; // 1 = untracked; anything else (no repo, no git) = unknown → protect
+  }
+}
 
 const SHELL_TOOLS = new Set(['Bash', 'PowerShell']);
 const WRITE_TOOLS = new Set(['Write', 'Edit', 'MultiEdit', 'NotebookEdit']);
@@ -260,7 +274,7 @@ function checkWrite(tool, ti, dir, config, fromFile) {
     }
   }
 
-  if (fromFile) {
+  if (fromFile && !isNewFile(dir, rel, tool, existing)) {
     for (const p of config.protectedPaths || []) {
       if (p && p.glob && lib.globToRegExp(p.glob).test(rel)) {
         const tests = (p.contractTests || []).join(', ');

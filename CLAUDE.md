@@ -54,7 +54,7 @@ There is no build step and no dependency to install — keep it that way.
   superseded, not silently deleted.
 
 ## Status (keep current)
-- v0.2.0 (ekip-kit, built on claude-team-kit 0.1.0); changes since are
+- v0.3.0 (ekip-kit, built on claude-team-kit 0.1.0); changes since are
   under Unreleased in `CHANGELOG.md`. `npm test` green locally on Windows
   (Node 24); this repo has no CI remote yet.
 - Verified in headless `claude -p` sessions (`docs/KARSILASTIRMA.md`):

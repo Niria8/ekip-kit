@@ -152,6 +152,21 @@ test('asks before editing a protected path only when configured', () => {
   assert.equal(run('Edit', { file_path: path.join(bare, 'src/payments/charge.js'), old_string: 'a', new_string: 'b' }, bare), null);
 });
 
+test('protected path: files created in this change are not protected, committed ones are', () => {
+  const dir = tmpProject(CONFIG, { 'src/payments/charge.js': 'a' });
+  const git = (...a) => spawnSync('git', a, { cwd: dir, encoding: 'utf8' });
+  if (git('init', '-q').status !== 0) return; // git not available
+  git('-c', 'user.email=t@t', '-c', 'user.name=t', 'add', '.');
+  git('-c', 'user.email=t@t', '-c', 'user.name=t', 'commit', '-qm', 'init');
+  // committed file: still asks
+  assert.equal(run('Edit', { file_path: path.join(dir, 'src/payments/charge.js'), old_string: 'a', new_string: 'b' }, dir).decision, 'ask');
+  // brand-new file (e.g. a new migration): no ask on create or on later edits
+  const fresh = path.join(dir, 'src/payments/0002_new.js');
+  assert.equal(run('Write', { file_path: fresh, content: 'x' }, dir), null);
+  fs.writeFileSync(fresh, 'x');
+  assert.equal(run('Edit', { file_path: fresh, old_string: 'x', new_string: 'y' }, dir), null);
+});
+
 // ---------- test integrity ----------
 test('asks when a test gets skipped or loses assertions', () => {
   const dir = tmpProject(CONFIG);

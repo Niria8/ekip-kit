@@ -23,7 +23,14 @@ out of context. This protocol targets exactly those.
   list down. If it is longer than expected, stop and tell the user before
   continuing.
 - **Baseline.** Run the tests covering the area (and the contract tests of
-  any protected path you touch). Record the result. If a test is already
+  any protected path you touch) with the project's documented test
+  command (`CLAUDE.md` Commands, the test script, CI) — not a bare test
+  runner, which can miss environment the project sets up. If the run
+  fails before any test executes (import/collection error, missing
+  service, missing env var or build output), that is an environment
+  problem, not a red baseline: read the test script and CI config for
+  the setup they do, retry that way, and report what was missing. Stop
+  and ask only if no documented way makes the tests run. If a test is already
   failing: when it covers code you are about to change, stop and report
   before editing. When it is unrelated to your change, do not fix, skip,
   or edit it — record it, carry on with the task, and name it in your

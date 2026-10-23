@@ -69,7 +69,7 @@ author's assumptions. Flow and risk table: [`docs/WORKFLOW.md`](docs/WORKFLOW.md
 
 | Hook | Always on | Opt-in via `.claude/guardrails.json` |
 |---|---|---|
-| `PreToolUse` guard | deny catastrophic commands and `curl \| sh`; deny deleting/emptying memory and knowledge files; deny reading `.env`/keys; deny writing high-confidence secrets; ask on hardcoded credentials, newly added insecure code (SQL/command injection, `eval`, XSS sinks, disabled TLS, weak hashes, insecure randomness, unsafe deserialization, wildcard CORS, SSRF, path traversal, secrets in logs), force-push, `reset --hard`, destructive SQL, infra changes, test skips, removed assertions | ask before editing protected paths |
+| `PreToolUse` guard | deny catastrophic commands and `curl \| sh`; deny deleting/emptying memory and knowledge files; deny reading `.env`/keys; deny writing high-confidence secrets; ask on hardcoded credentials, newly added insecure code (SQL/command injection, `eval`, XSS sinks, disabled TLS, weak hashes, insecure randomness, unsafe deserialization, wildcard CORS, SSRF, path traversal, secrets in logs), force-push, `reset --hard`, destructive SQL, infra changes, test skips, removed assertions | ask before editing protected paths (files created in the current change are exempt) |
 | `SessionStart` | short "which skill for which task" working rules | inject DON'Ts, invariants, protected paths, and active work logs at startup and after compaction |
 | `Stop` | — | once per change set: ask for tests when source changed without tests, and for contract tests when a protected path changed |
 

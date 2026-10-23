@@ -9,6 +9,26 @@ and `package.json` together (a test checks they match).
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-23
+
+Fixes found by running the kit on real code (the FastAPI demo project;
+see `docs/KARSILASTIRMA.md`, "Tur 4").
+
+### Fixed
+- Guard hook: protected paths no longer ask for files created in the
+  current change (new or untracked in git). A new migration under a
+  protected `alembic/versions/**` was blocked from being finished.
+- `/plan-change`, `/memory-cleanup`, `/verify`: run their agents in the
+  foreground and wait for the result. Agents started in the background
+  were lost when the session ended before they reported.
+- `safe-change`, `change-safety` rule: tests that cannot start
+  (import/collection or environment error) are a setup problem, not a red
+  baseline — use the documented test command and the setup the test
+  script / CI does, then report. (A bare `pytest` without the project's
+  env var made every baseline look red.)
+- `team-project-setup`: test commands in `CLAUDE.md` must carry the
+  environment the test script / CI sets, and are run once to confirm.
+
 ## [0.2.0] - 2026-10-23
 
 First ekip-kit release: claude-team-kit plus the parts of other kits that

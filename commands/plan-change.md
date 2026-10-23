@@ -6,7 +6,10 @@ allowed-tools: Read, Grep, Glob, Bash(git:*), Agent
 
 Run the `ekip-kit:planner` agent on this request: $ARGUMENTS
 
-Pass it everything relevant from this conversation (ticket text, user
+Run it in the foreground and wait for its plan before you reply — never
+as a background task: everything below depends on its result, and a
+session that ends while the planner runs loses the plan. Pass it
+everything relevant from this conversation (ticket text, user
 constraints, earlier decisions). Do not edit any code in this command.
 
 When it returns:
