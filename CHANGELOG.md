@@ -9,6 +9,10 @@ and `package.json` together (a test checks they match).
 
 ## [Unreleased]
 
+### Changed
+- Plugin author and marketplace owner are now "Takım". The claude-team-kit
+  copyright stays in `LICENSE` and its credit in `NOTICE.md`, as MIT requires.
+
 ## [0.4.0] - 2026-10-23
 
 ### Changed
