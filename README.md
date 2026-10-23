@@ -109,8 +109,8 @@ Details and rationale: [`docs/DESIGN.md`](docs/DESIGN.md).
 ## Install
 
 ```
-claude plugin marketplace add <this-repo-url-or-local-path>
-claude plugin install takim
+claude plugin marketplace add Niria8/ekip-kit
+claude plugin install takim@takim-marketplace
 ```
 
 Try it locally without installing:

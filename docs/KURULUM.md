@@ -4,15 +4,16 @@
 
 Kit bir Claude Code plugin'i ve kendi marketplace'i olan bir git deposudur.
 
-- **Ekip için (önerilen):** Depoyu şirketin GitHub'ına (veya iç git
-  sunucusuna) gönderin, örn. `ORG/takim`. Sonra
+- **Ekip için:** Kit GitHub'da: [`Niria8/ekip-kit`](https://github.com/Niria8/ekip-kit).
+  Depo özel (private) ise ekip üyelerinin bu depoya okuma erişimi olmalı.
+  Depo başka bir yere taşınırsa
   `skills/team-project-setup/templates/.claude/settings.json` içindeki
-  `ORG/takim` değerini gerçek depo adıyla değiştirin. Ekip üyelerinin bu
-  depoya okuma erişimi olmalı.
-- **Tek makinede denemek için:** klasör yolu yeterlidir.
+  `Niria8/ekip-kit` değerini yeni adla değiştirin.
+- **Tek makinede denemek için:** GitHub adresi yerine kitin klasör yolu da
+  verilebilir.
 
 ```bash
-claude plugin marketplace add <depo-url-veya-klasor-yolu> --scope project
+claude plugin marketplace add Niria8/ekip-kit --scope project
 ```
 
 ```bash
